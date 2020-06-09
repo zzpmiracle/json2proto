@@ -1,0 +1,34 @@
+syntax = "proto2";
+message EchoRequest {
+ required string text = 1;
+ }
+   message ComplexMessage {
+
+ optional float _float = 2;
+ required sint64 _int_default = 13[default=99];
+ repeated sint64 _int = 3;
+ required bytes _bin = 4;
+
+ oneof test_one_of{
+  string _str = 1;
+  bool _bool = 5;
+ }
+ message SubMessage {
+ required string field = 1;
+ repeated EchoRequest echo = 2;
+  extensions 100 to 199;
+ }
+ repeated SubMessage subMessage = 10;
+ enum SubEnum {
+ VALUE1 = 10;
+ VALUE2 = 20;
+ };
+
+ repeated SubEnum _enum = 11;
+ repeated string str_list = 12;
+ extensions 100 to 199;
+  extend ComplexMessage {
+ optional sint32 e_int = 103;
+ repeated sint32 e_int_list = 104;
+ }
+ }
